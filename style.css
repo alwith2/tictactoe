@@ -12,7 +12,7 @@ body {
 .space {
     width: 100px;
     height: 100px;
-    border: 1px solid #333333;
+    border: 1px solid black;
     cursor: pointer;
     line-height: 100px;
     font-size: 60px;

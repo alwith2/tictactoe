@@ -3,11 +3,13 @@
 // create button 
 // create elements
 var restartButton = document.getElementById('restartButton');
+// squares in html
 var spaces = document.getElementsByClassName('space');
 var symbols = ['O', 'X'];
 var turn = 0;
 var notification = document.getElementById('notification');
 var winnerMessage = document.getElementById('winnerMessage');
+// winning combinations
 var wins = [
 	[0,1,2],
 	[3,4,5],
@@ -20,6 +22,7 @@ var wins = [
 ];
 
 // Wait for page to load before doing anything
+// start when clicked
 document.onreadystatechange = function() {
 	if (document.readyState == "interactive") {
 		restartButton.onclick = startGame;
@@ -43,13 +46,16 @@ function startGame() {
 }
 
 function takeSpace() {
-	console.log('takeSpace')
-	turn++;
+    console.log('takeSpace')
+    // advance turn after each click
+    turn++;
+    // alternate turns
 	var currentPlayer = symbols[turn % 2];
 	this.innerHTML = currentPlayer; // The modulus swaps between 0 and 1 of the symbols array
 	this.removeEventListener("click", takeSpace); // `this` is always the object that you're acting on right now
-	// console.log(this); <-- Shows in the console the computer remembering which space you were on
-
+    // console.log(this); 
+    
+    // counter to check for win by determining length
 	for (var i = 0; i < wins.length; i++) {
 		if (checkForWin(wins[i])) {
 			
@@ -58,12 +64,13 @@ function takeSpace() {
 				spaces[j].removeEventListener("click", takeSpace);
 			}
 
-			// Notify the players
+			// display player winner
 			notification.style.display = 'block';
 			winnerMessage.innerHTML = currentPlayer + " won!";
 
 		} else {
-			
+            
+            // determine tie game when board is full
 			if (turn == 9) {
 				if (notification.style.display != 'block') {
 					notification.style.display = 'block';
@@ -75,6 +82,8 @@ function takeSpace() {
 }
 
 function checkForWin(winArray) {
+    // check which spaces have been clicked
+    // check if true
 	return spaces[winArray[0]].innerHTML !== '' && 
 		spaces[winArray[0]].innerHTML === spaces[winArray[1]].innerHTML && 
 		spaces[winArray[0]].innerHTML === spaces[winArray[2]].innerHTML;
