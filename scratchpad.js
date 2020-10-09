@@ -50,21 +50,6 @@ document.onreadystatechange = function() {
 	}
 };
 
-function startGame() {
-	// reset turn counter
-	turn = 0;
-
-	// remove previous winner notification and make sure div is hidden
-	winnerMessage.innerHTML = '';
-	notification.style.display = 'none';
-
-	// Clear board and add click events on squares
-	for (var i = 0; i < spaces.length; i++) {
-		spaces[i].innerHTML = ''; // Wipes out board when 'New Game' is clicked
-		spaces[i].addEventListener("click", takeSpace);
-	}
-}
-
 // advance turn after each click
 function takeSpace() {
 	console.log('takeSpace')
@@ -101,7 +86,25 @@ function takeSpace() {
 }
 
 function checkForWin(winArray) {
+    // check which spaces have been clicked
+    // check if true
 	return spaces[winArray[0]].innerHTML !== '' && 
 		spaces[winArray[0]].innerHTML === spaces[winArray[1]].innerHTML && 
 		spaces[winArray[0]].innerHTML === spaces[winArray[2]].innerHTML;
 }
+
+    function startGame() {
+        // reset turn counter
+        turn = 0;
+    
+        // remove previous winner notification and make sure div is hidden
+        winnerMessage.innerHTML = '';
+        notification.style.display = 'none';
+    
+        // Clear board and add click events on squares
+        for (var i = 0; i < spaces.length; i++) {
+            spaces[i].innerHTML = ''; // Wipes out board when 'New Game' is clicked
+            spaces[i].addEventListener("click", takeSpace);
+        }
+    }
+	

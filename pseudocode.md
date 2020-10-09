@@ -42,7 +42,7 @@ reset game state {
     after win or tie determined
     set turn to 0 (clear board)
     make counter for space.length
-    set spaces to '' in html
-    
-    
+    set spaces to '' in html   
 }
+
+##
